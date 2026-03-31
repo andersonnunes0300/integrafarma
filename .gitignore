@@ -1,0 +1,29 @@
+# --- Configurações do VS Code ---
+# Evita que configurações pessoais de tema e extensões atrapalhem seus colegas
+.vscode/
+*.code-workspace
+
+# --- Lixo do Sistema Operacional (Windows) ---
+# Arquivos invisíveis que o Windows cria e que não servem para o código
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# --- Logs e Arquivos Temporários ---
+# Arquivos de erro que o PHP ou o XAMPP podem gerar durante os testes
+*.log
+*.tmp
+error_log
+
+# --- Ambientes e Dependências (Prevenção) ---
+# Caso alguém use bibliotecas externas ou ambientes virtuais (como o .venv citado)
+.venv/
+venv/
+/vendor/
+node_modules/
+.env
+
+# --- Banco de Dados ---
+# Mantenha as linhas abaixo comentadas para que o grupo receba o estrutura.sql
+# Se um dia você quiser esconder seus scripts SQL, você deve descomentar
+# *.sql
