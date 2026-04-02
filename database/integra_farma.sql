@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/04/2026 às 01:38
+-- Tempo de geração: 02/04/2026 às 02:12
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `cimed_farma`
+-- Banco de dados: `integra_farma`
 --
 
 -- --------------------------------------------------------
@@ -32,15 +32,6 @@ CREATE TABLE `fornecedores` (
   `nome_empresa` varchar(100) NOT NULL,
   `cnpj` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `fornecedores`
---
-
-INSERT INTO `fornecedores` (`id_fornecedor`, `nome_empresa`, `cnpj`) VALUES
-(1, 'NeoQuimica', '28283283892'),
-(3, 'Med', '121212121212'),
-(4, 'Armandos', '0230203202');
 
 -- --------------------------------------------------------
 
@@ -57,19 +48,8 @@ CREATE TABLE `medicamentos` (
   `validade` date DEFAULT NULL,
   `quantidade` int(11) DEFAULT 0,
   `preco` decimal(10,2) DEFAULT NULL,
-  `id_fornecedor` int(11) DEFAULT NULL,
-  `id_usuario_cad` int(11) DEFAULT NULL
+  `id_fornecedor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `medicamentos`
---
-
-INSERT INTO `medicamentos` (`id_medicamento`, `nome`, `tipo`, `tarja`, `lote`, `validade`, `quantidade`, `preco`, `id_fornecedor`, `id_usuario_cad`) VALUES
-('22222', 'Elax', 'Genérico', 'Preta', 'XKE2', '2025-05-02', 8, 22.00, 4, 1),
-('23333', 'ZINCOX3', 'Genérico', 'Vermelha', 'DMDW', '2007-03-30', 7, 28.00, 4, 1),
-('32323', 'Zerax', 'Genérico', 'Livre', 'OIXS', '2000-10-01', 20, 20.00, 1, 1),
-('49494', 'JOCAS', 'Genérico', 'Vermelha', 'KJSAS', '2000-04-27', 5, 200.00, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -84,14 +64,6 @@ CREATE TABLE `usuarios` (
   `senha` varchar(255) NOT NULL,
   `nivel` enum('admin','funcionario') DEFAULT 'funcionario'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `usuarios`
---
-
-INSERT INTO `usuarios` (`id_usuario`, `nome`, `login`, `senha`, `nivel`) VALUES
-(1, 'Anderson Nunes Santos', 'anderson', '123', 'admin'),
-(2, 'Anderson Nunes Santos', 'anderson1', '123', 'funcionario');
 
 --
 -- Índices para tabelas despejadas
@@ -109,8 +81,7 @@ ALTER TABLE `fornecedores`
 --
 ALTER TABLE `medicamentos`
   ADD PRIMARY KEY (`id_medicamento`),
-  ADD KEY `id_fornecedor` (`id_fornecedor`),
-  ADD KEY `fk_usuario_medicamento` (`id_usuario_cad`);
+  ADD KEY `id_fornecedor` (`id_fornecedor`);
 
 --
 -- Índices de tabela `usuarios`
@@ -127,13 +98,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
-  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para tabelas despejadas
@@ -143,7 +114,6 @@ ALTER TABLE `usuarios`
 -- Restrições para tabelas `medicamentos`
 --
 ALTER TABLE `medicamentos`
-  ADD CONSTRAINT `fk_usuario_medicamento` FOREIGN KEY (`id_usuario_cad`) REFERENCES `usuarios` (`id_usuario`),
   ADD CONSTRAINT `medicamentos_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id_fornecedor`);
 COMMIT;
 
