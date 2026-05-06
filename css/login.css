@@ -1,0 +1,121 @@
+:root {
+    --primary: #6366f1;
+    --accent: #f59e0b;
+    --success: #10b981;
+    --danger: #ef4444;
+    --bg-page: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --bg-card: #ffffff;
+    --border-color: #e2e8f0;
+    --header-dark: #1e1b4b;
+}
+
+/* Configuração Geral */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-page);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: var(--text-main);
+}
+
+
+.container-login {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Caixa de Login */
+.caixa-login {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.05);
+    width: 380px;
+    height: 400px;
+    text-align: left;
+    border-top: 5px solid var(--primary);
+    align-items: center;
+}
+
+.form-login .btn-entrar {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Estilo do Logo */
+.logo-farmacia {
+    display: block;
+    width: 200px;
+    height: 120px;
+    margin: 0 auto 20px auto;
+}
+
+h2 {
+    color: var(--text-main);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+/* Labels */
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Inputs */
+.form-control {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-input);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: var(--text-main);
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Botão Entrar */
+.btn-entrar {
+    width: 120px;
+    padding: 12px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+.btn-entrar:hover {
+    filter: brightness(0.9);
+
+}
+
+/* Mensagem de Erro (Se precisar) */
+.error-message {
+    color: var(--danger);
+    font-size: 13px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
