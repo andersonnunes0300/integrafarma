@@ -22,6 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    echo "<script>alert('Usuário ou senha incorretos!'); window.location.href='../frontend/tela_usuario.php';</script>";
+    echo "<script>alert('Usuário ou senha incorretos!'); window.location.href='../frontend/tela_login.php';</script>";
 }
 ?>
