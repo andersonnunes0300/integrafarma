@@ -17,11 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['id_usuario'] = $row['id_usuario'];
             $_SESSION['nome'] = $row['nome'];
 
-            header("Location: ../frontend/tela_login.php");
+            header("Location: ../frontend/tela_usuario.php");
             exit;
         }
     }
 
-    echo "<script>alert('Usuário ou senha incorretos!'); window.location.href='../frontend/tela_login.php';</script>";
+    echo "<script>alert('Usuário ou senha incorretos!'); window.location.href='../frontend/tela_usuario.php';</script>";
 }
 ?>
