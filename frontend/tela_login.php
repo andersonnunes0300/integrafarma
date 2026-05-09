@@ -15,7 +15,7 @@
             <!-- logo da farmácia  -->
             <img src="../img/integrafarma.png" alt="Logo Integra Farma" class="logo-farmacia">
 
-            <form class="form-login" action="login.php" method="POST">
+            <form class="form-login" action="../backend/login.php" method="POST">
                 <h2>Login Integra Farma</h2>
 
                 <!-- E-mail -->
