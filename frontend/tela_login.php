@@ -15,12 +15,12 @@
             <!-- logo da farmácia  -->
             <img src="../img/integrafarma.png" alt="Logo Integra Farma" class="logo-farmacia">
 
-            <form class="form-login" action="dashboard.php" method="POST">
+            <form class="form-login" action="login.php" method="POST">
                 <h2>Login Integra Farma</h2>
 
                 <!-- E-mail -->
                 <label for="inputEmail" class="form-label">Email:</label>
-                <input type="email" name="email" class="form-control" id="inputEmail" placeholder="nome@exemplo.com" required>
+                <input type="email" name="login" class="form-control" id="inputEmail" placeholder="nome@exemplo.com" required>
 
                 <!-- Senha -->
                 <label for="inputSenha" class="form-label">Senha:</label>
