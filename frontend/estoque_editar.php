@@ -5,7 +5,6 @@ require_once '../conexao/conexao.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     
-    // Boa prática: usar prepared statements para evitar SQL Injection
     $stmt = $conn->prepare("SELECT * FROM medicamentos WHERE id_medicamento = ?");
     $stmt->bind_param("s", $id);
     $stmt->execute();
