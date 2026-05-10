@@ -18,9 +18,9 @@
             <form class="form-login" action="../backend/login.php" method="POST">
                 <h2>Login Integra Farma</h2>
 
-                <!-- E-mail -->
-                <label for="inputEmail" class="form-label">Email:</label>
-                <input type="email" name="login" class="form-control" id="inputEmail" placeholder="nome@exemplo.com" required>
+                <!-- Usuário de Login -->
+                <label for="Nome" class="form-label">Usuário de Login:</label>
+                <input type="Nome" name="login" class="form-control" id="Nome" placeholder="Login" required>
 
                 <!-- Senha -->
                 <label for="inputSenha" class="form-label">Senha:</label>
@@ -29,6 +29,10 @@
                 <!-- Botão entrar -->
                 <button type="submit" class="btn-entrar">Entrar</button>
             </form>
+
+            <div class="links">
+            Não tem uma conta? <a href="usuario_cad.php">Cadastre-se</a><br>
+            </div>
         </div>
     </div>
 </body>

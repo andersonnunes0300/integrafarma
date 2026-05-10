@@ -5,6 +5,8 @@ if (!isset($_SESSION['id_usuario'])) {
     header("Location: tela_login.php");
     exit;
 }
+
+require_once '../conexao/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +16,7 @@ if (!isset($_SESSION['id_usuario'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/tela_usuario.css">
-    <title>IntegraFarma</title>
+    <title>IntegraFarma - Cadastro</title>
 </head>
 
 <body>
@@ -34,41 +36,66 @@ if (!isset($_SESSION['id_usuario'])) {
 
     <main class="conteudo_principal">
         <section id="cadastro_produtos">
-
             <form action="../backend/estoque_add.php" method="POST">
-                <!-- Campos do formulário -->
                 <fieldset>
                     <legend>Registrar Medicamento</legend>
+                    
+                    <div class="campo-grupo">
+                        <label for="id_medicamento">Código (ID):</label>
+                        <input type="text" id="id_medicamento" name="id_medicamento" required placeholder="DIP-123456">
+                    </div>
 
-                    <label for="id_medicamento">Código (ID):</label>
-                    <input type="text" id="id_medicamento" name="id_medicamento" maxlength="10" required placeholder="DIP-123456">
+                    <div class="campo-grupo">
+                        <label for="nome">Nome do Medicamento:</label>
+                        <input type="text" id="nome" name="nome" required placeholder="Ex: Dipirona 500mg">
+                    </div>
 
-                    <label for="nome">Nome do Medicamento:</label>
-                    <input type="text" id="nome" name="nome" maxlength="100" required placeholder="Ex: Dipirona 500mg">
+                    <div class="campo-grupo">
+                        <label for="tipo">Tipo:</label>
+                        <input type="text" id="tipo" name="tipo" required placeholder="Ex: Genérico">
+                    </div>
 
-                    <label for="tipo">Tipo:</label>
-                    <input type="text" id="tipo" name="tipo" required placeholder="Ex: Genérico">
+                    <div class="campo-grupo">
+                        <label for="tarja">Tarja:</label>
+                        <input type="text" id="tarja" name="tarja" required placeholder="Ex: Tarja Vermelha">
+                    </div>
 
-                    <label for="tarja">Tarja:</label>
-                    <input type="text" id="tarja" name="tarja" required placeholder="Ex: Tarja Vermelha">
+                    <div class="campo-grupo">
+                        <label for="lote">Lote:</label>
+                        <input type="text" id="lote" name="lote" placeholder="Ex: L-123456">
+                    </div>
 
-                    <label for="lote">Lote:</label>
-                    <input type="text" id="lote" name="lote" placeholder="Ex: L-123456">
+                    <div class="campo-grupo">
+                        <label for="validade">Data de Validade:</label>
+                        <input type="date" id="validade" name="validade">
+                    </div>
 
-                    <label for="validade">Data de Validade:</label>
-                    <input type="date" id="validade" name="validade">
+                    <div class="campo-grupo">
+                        <label for="quantidade">Qtd em Estoque:</label>
+                        <input type="number" id="quantidade" name="quantidade" min="0" value="0">
+                    </div>
 
-                    <label for="quantidade">Quantidade em Estoque:</label>
-                    <input type="number" id="quantidade" name="quantidade" min="0" value="0">
+                    <div class="campo-grupo">
+                        <label for="preco">Preço (R$):</label>
+                        <input type="number" id="preco" name="preco" step="0.01" min="0" placeholder="0,00">
+                    </div>
 
-                    <label for="preco">Preço (R$):</label>
-                    <input type="number" id="preco" name="preco" step="0.01" min="0" placeholder="0,00">
-
-                    <label for="id_fornecedor">ID Fornecedor:</label>
-                    <input type="number" id="id_fornecedor" name="id_fornecedor">
+                    <div class="campo-grupo">
+                        <label for="id_fornecedor">Fornecedor:</label>
+                        <select id="id_fornecedor" name="id_fornecedor" required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+                            <option value="">Selecione um fornecedor</option>
+                            <?php
+                            $sql_f = "SELECT id_fornecedor, nome_empresa FROM fornecedores ORDER BY nome_empresa ASC";
+                            $res_f = $conn->query($sql_f);
+                            while ($f = $res_f->fetch_assoc()) {
+                                echo "<option value='{$f['id_fornecedor']}'>({$f['id_fornecedor']}) " . htmlspecialchars($f['nome_empresa']) . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
                 </fieldset>
 
-                <button class="btn-cadastrar" type="submit">Cadastrar</button>
+                <button class="btn-cadastrar" type="submit">Cadastrar Produto</button>
             </form>
         </section>
 
@@ -76,30 +103,27 @@ if (!isset($_SESSION['id_usuario'])) {
             <table>
                 <thead>
                     <tr>
-                        <th>Código (ID)</th>
+                        <th>ID</th>
                         <th>Nome</th>
                         <th>Tipo</th>
                         <th>Tarja</th>
                         <th>Lote</th>
                         <th>Validade</th>
-                        <th>Quantidade</th>
+                        <th>Qtd</th>
                         <th>Preço</th>
-                        <th>ID Fornecedor</th>
+                        <th>Fornecedor</th>
                         <th style="text-align: center;">Ações</th>
                     </tr>
                 </thead>
-
                 <tbody>
-                    <!-- Aqui serão inseridos os resultados do cadastro -->
                     <?php
-                    require_once '../conexao/conexao.php'; // Garante a conexão
-
-                    // Consulta para buscar todos os medicamentos
-                    $sql = "SELECT * FROM medicamentos ORDER BY nome ASC";
+                    $sql = "SELECT m.*, f.nome_empresa 
+                            FROM medicamentos m 
+                            LEFT JOIN fornecedores f ON m.id_fornecedor = f.id_fornecedor 
+                            ORDER BY m.nome ASC";
                     $resultado = $conn->query($sql);
 
-                    if ($resultado->num_rows > 0) {
-                        // Loop para exibir cada linha do banco de dados
+                    if ($resultado && $resultado->num_rows > 0) {
                         while ($row = $resultado->fetch_assoc()) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($row['id_medicamento']) . "</td>";
@@ -107,28 +131,27 @@ if (!isset($_SESSION['id_usuario'])) {
                             echo "<td>" . htmlspecialchars($row['tipo']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['tarja']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['lote']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['validade']) . "</td>";
+                            echo "<td>" . date('d/m/Y', strtotime($row['validade'])) . "</td>";
                             echo "<td>" . htmlspecialchars($row['quantidade']) . "</td>";
                             echo "<td>R$ " . number_format($row['preco'], 2, ',', '.') . "</td>";
-                            echo "<td>" . htmlspecialchars($row['id_fornecedor']) . "</td>";
+                            
+                            $nome_f = $row['nome_empresa'] ? htmlspecialchars($row['nome_empresa']) : "Não definido";
+                            echo "<td>(" . htmlspecialchars($row['id_fornecedor']) . ") " . $nome_f . "</td>";
+                            
                             echo "<td style='text-align: center;'>
-                    <a href='../backend/estoque_editar.php?id=" . $row['id_medicamento'] . "'>✏️</a>
-                    <a href='../backend/estoque_delete.php?id=" . $row['id_medicamento'] . "' onclick=\"return confirm('Deseja excluir?')\">🗑️</a>
-                  </td>";
+                                    <a href='../frontend/estoque_editar.php?id=" . $row['id_medicamento'] . "' title='Editar'>✏️</a>
+                                    <a href='../frontend/estoque_baixa.php?id=" . $row['id_medicamento'] . "' title='Dar Baixa' style='margin: 0 8px; color: #e67e22;'>📦↓</a> 
+                                    <a href='../backend/estoque_delete.php?id=" . $row['id_medicamento'] . "' onclick=\"return confirm('Deseja excluir?')\" title='Excluir'>🗑️</a>
+                                  </td>";
                             echo "</tr>";
                         }
                     } else {
                         echo "<tr><td colspan='10' style='text-align:center;'>Nenhum produto encontrado no estoque.</td></tr>";
                     }
                     ?>
-
                 </tbody>
-
-
+            </table>
         </section>
-
     </main>
-
 </body>
-
 </html>
