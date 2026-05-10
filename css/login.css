@@ -11,7 +11,7 @@
     --header-dark: #1e1b4b;
 }
 
-/* Configuração Geral */
+
 body {
     margin: 0;
     padding: 0;
@@ -32,17 +32,18 @@ body {
     padding: 20px;
 }
 
-/* Caixa de Login */
+
 .caixa-login {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.05);
     width: 380px;
-    height: 400px;
+    min-height: 450px; 
     text-align: left;
     border-top: 5px solid var(--primary);
-    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-login .btn-entrar {
@@ -50,7 +51,7 @@ body {
     margin: 0 auto;
 }
 
-/* Estilo do Logo */
+
 .logo-farmacia {
     display: block;
     width: 200px;
@@ -65,7 +66,7 @@ h2 {
     font-size: 1.5rem;
 }
 
-/* Labels */
+
 .form-label {
     display: block;
     margin-bottom: 8px;
@@ -74,7 +75,7 @@ h2 {
     font-size: 14px;
 }
 
-/* Inputs */
+
 .form-control {
     width: 100%;
     padding: 12px;
@@ -93,7 +94,7 @@ h2 {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
-/* Botão Entrar */
+
 .btn-entrar {
     width: 120px;
     padding: 12px;
@@ -112,10 +113,28 @@ h2 {
 
 }
 
-/* Mensagem de Erro (Se precisar) */
+
 .error-message {
     color: var(--danger);
     font-size: 13px;
     margin-top: -15px;
     margin-bottom: 15px;
+}
+
+.links { 
+    margin-top: 25px; 
+    font-size: 14px;
+    text-align: center;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.links a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.links a:hover {
+    text-decoration: underline;
 }
