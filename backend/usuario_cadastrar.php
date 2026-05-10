@@ -14,9 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("ssss", $nome, $login, $senha, $nivel);
 
         if ($stmt->execute()) {
-            echo "<script>alert('Usuário criado com sucesso!'); window.location.href='../frontend/xxxxxxx';</script>";
+            echo "<script>alert('Usuário criado com sucesso!'); window.location.href='../frontend/tela_login.php';</script>";
         } else {
-            echo "<script>alert('Erro ao criar conta.'); window.location.href='../frontend/xxxxxxxxx';</script>";
+            echo "<script>alert('Erro ao criar conta.'); window.location.href='../frontend/usuario_cad.php';</script>";
         }
     }
 

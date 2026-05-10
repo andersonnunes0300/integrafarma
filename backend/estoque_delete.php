@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
     $stmt->bind_param("s", $id);
 
     if ($stmt->execute()) {
-        header("Location: ../frontend/xxxxxx.php");
+        header("Location: ../frontend/tela_usuario.php");
     } else {
         echo "Erro ao deletar do estoque: " . $conn->error;
     }

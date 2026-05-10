@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $lote = $_POST['lote'];
         $validade = $_POST['validade'];
         $quantidade = $_POST['quantidade'];
+        $preco = $_POST ['preco'];
         $id_fornecedor = $_POST['id_fornecedor'];
 
 $stmt = $conn->prepare("
@@ -31,7 +32,7 @@ WHERE id_medicamento=?
         );
 
 if ($stmt->execute()) {
-echo "<script>alert('Medicamento atualizado!'); window.location.href='../frontend/xxxxx.php';</script>";
+echo "<script>alert('Medicamento atualizado!'); window.location.href='../frontend/tela_usuario.php';</script>";
 }else{
     echo "Erro ao atualizar!" . $conn->error;
 }
