@@ -9,6 +9,7 @@
     --bg-card: #ffffff;
     --border-color: #e2e8f0;
     --header-dark: #1e1b4b;
+    --border-input: #e2e8f0;
 }
 
 
@@ -94,6 +95,39 @@ h2 {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
+.nivel {
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.nivel .texto {
+    display: block;
+    margin-bottom: 8px;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 0;
+}
+
+#nivel-acesso {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #1e293b;
+    background-color: #ffffff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    outline: none;
+}
+
+#nivel-acesso:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
 
 .btn-entrar {
     width: 120px;
