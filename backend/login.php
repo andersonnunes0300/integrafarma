@@ -1,27 +1,31 @@
 <?php
 session_start();
+
 require_once '../conexao/conexao.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = $_POST['login'];
     $senha = $_POST['senha'];
 
-    $stmt = $conn->prepare("SELECT id_usuario, nome, senha FROM usuarios WHERE login = ?");
-    $stmt->bind_param("s", $login);
-    $stmt->execute();
-    $resultado = $stmt->get_result();
+    $sql = "SELECT * FROM usuarios WHERE login = '$login' AND senha = '$senha' LIMIT 1";
+    $resultado = $conn->query($sql);
 
-    if ($row = $resultado->fetch_assoc()) {
+    if ($resultado && $resultado->num_rows > 0) {
+        $dados = $resultado->fetch_assoc();
 
-        if ($senha === $row['senha']) {
-            $_SESSION['id_usuario'] = $row['id_usuario'];
-            $_SESSION['nome'] = $row['nome'];
+        $_SESSION['usuario_id'] = $dados['id_usuario'];
+        $_SESSION['usuario_login'] = $dados['login'];
+        $_SESSION['usuario_nivel'] = $dados['nivel'];
+        $_SESSION['nome'] = $dados['nome'];
 
+        if ($_SESSION['usuario_nivel'] === 'admin') {
+            header("Location:../frontend/tela_admin.php");
+        } else {
             header("Location: ../frontend/tela_usuario.php");
-            exit;
         }
+        exit;
+    } else {
+        echo "<script>alert('Login ou senha incorretos. Tente novamente.');</script>";
     }
-
-    echo "<script>alert('Usuário ou senha incorretos!'); window.location.href='../frontend/tela_login.php';</script>";
 }
 ?>
