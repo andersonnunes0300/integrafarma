@@ -1,13 +1,14 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['id_usuario'])) {
+if (!isset($_SESSION['usuario_id'])) {
     header("Location: tela_login.php");
     exit;
 }
 
 require_once '../conexao/conexao.php';
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-Br">
@@ -27,7 +28,7 @@ require_once '../conexao/conexao.php';
             </div>
 
             <div class="info-usuario">
-                <span class="icon-nome-usuario">👤 <?= htmlspecialchars($_SESSION['nome']) ?></span>
+                <span class="icon-nome-usuario">👤 <?= htmlspecialchars($_SESSION['usuario_login']) ?></span>
                 <a href="historico.php" class="btn-historico">📜 Relatório</a>
                 <a href="../backend/logout.php">Sair</a>
             </div>
@@ -39,7 +40,7 @@ require_once '../conexao/conexao.php';
             <form action="../backend/estoque_add.php" method="POST">
                 <fieldset>
                     <legend>Registrar Medicamento</legend>
-                    
+
                     <div class="campo-grupo">
                         <label for="id_medicamento">Código (ID):</label>
                         <input type="text" id="id_medicamento" name="id_medicamento" required placeholder="DIP-123456">
@@ -134,10 +135,10 @@ require_once '../conexao/conexao.php';
                             echo "<td>" . date('d/m/Y', strtotime($row['validade'])) . "</td>";
                             echo "<td>" . htmlspecialchars($row['quantidade']) . "</td>";
                             echo "<td>R$ " . number_format($row['preco'], 2, ',', '.') . "</td>";
-                            
+
                             $nome_f = $row['nome_empresa'] ? htmlspecialchars($row['nome_empresa']) : "Não definido";
                             echo "<td>(" . htmlspecialchars($row['id_fornecedor']) . ") " . $nome_f . "</td>";
-                            
+
                             echo "<td style='text-align: center;'>
                                     <a href='../frontend/estoque_editar.php?id=" . $row['id_medicamento'] . "' title='Editar'>✏️</a>
                                     <a href='../frontend/estoque_baixa.php?id=" . $row['id_medicamento'] . "' title='Dar Baixa' style='margin: 0 8px; color: #e67e22;'>📦↓</a> 
@@ -154,4 +155,5 @@ require_once '../conexao/conexao.php';
         </section>
     </main>
 </body>
+
 </html>
