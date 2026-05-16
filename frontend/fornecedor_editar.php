@@ -35,7 +35,6 @@ if (isset($_GET['id'])) {
     <div class="card">
         <h2>Editar Fornecedor</h2>
         <form action="../backend/fornecedor_editar.php" method="POST">
-
             <input type="hidden" name="id_fornecedor" value="<?php echo $fornecedor['id_fornecedor']; ?>">
 
             <label>Nome do Fornecedor:</label>
