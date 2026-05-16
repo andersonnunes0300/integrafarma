@@ -36,25 +36,21 @@ require_once '../conexao/conexao.php';
     <nav class="menu-adm">
         <ul class="menu-principal">
             <li class="menu-item">
-                <a href="#" class="link-principal">Config. Fornecedor</a>
+                <a href="listas_users_fornecedores.php" class="link-principal">Fornecedores</a>
                 <ul class="submenu">
-                    <li><a href="fornecedor_cadastrar.php">Cadastrar Fornecedor</a></li>
-                    <li><a href="fornecedor_editar.php">Editar Fornecedor</a></li>
-                    <li><a href="fornecedor_excluir.php">Excluir Fornecedor</a></li>
+                    
                 </ul>
             </li>
 
             <li class="menu-item">
-                <a href="#" class="link-principal">Config. Usuário</a>
+                <a href="listas_users_fornecedores.php" class="link-principal">Usuários</a>
                 <ul class="submenu">
-                    <li><a href="usuario_cad.php">Cadastrar Usuário</a></li>
-                    <li><a href="usuario_editar.php">Editar Usuário</a></li>
-                    <li><a href="usuario_excluir.php">Excluir Usuário</a></li>
+                    
                 </ul>
             </li>
 
             <li class="menu-item">
-                <a href="#" class="link-principal">Config. Estoque</a>
+                <a href="#" class="link-principal">Estoque</a>
                 <ul class="submenu">
                     <li><a href="tela_usuario.php">Cadastrar Produto</a></li>
                     <li><a href="estoque_atualizar.php">Entrada/Saída</a></li>
