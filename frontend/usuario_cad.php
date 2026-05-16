@@ -22,7 +22,7 @@
             
             <button type="submit">Finalizar Cadastro</button>
         </form>
-        <p style="text-align:center;"><a href="tela_login.php" style="color:#666; text-decoration:none; font-size:14px;">Voltar ao Login</a></p>
+        <p style="text-align:center;"><a href="tela_admin.php" style="color:#666; text-decoration:none; font-size:14px;">Cancelar e Voltar</a></p>
     </div>
 </body>
 </html>
