@@ -22,7 +22,7 @@ if (!isset($_SESSION['usuario_id'])) {
         <form action="../backend/fornecedor_cadastrar.php" method="POST">
             <input type="hidden" name="tipo_cadastro" value="fornecedor">
 
-            <input type="text" name="nome" placeholder="Nome do Fornecedor" required>
+            <input type="text" name="nome_empresa" placeholder="Nome do Fornecedor" required>
             <input type="text" name="cnpj" placeholder="CNPJ" required>
 
             <button type="submit">Finalizar Cadastro</button>
