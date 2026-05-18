@@ -38,6 +38,18 @@ CREATE TABLE `fornecedores` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `logs_historico`
+--
+
+CREATE TABLE IF NOT EXISTS `logs_historico` (
+    `id_log` INT AUTO_INCREMENT PRIMARY KEY,
+    `id_usuario` INT NOT NULL,
+    `acao` VARCHAR(255) NOT NULL,
+    `data_hora` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`id_usuario`) REFERENCES `usuarios`(`id_usuario`) ON DELETE CASCADE
+);
+
+--
 -- Estrutura para tabela `medicamentos`
 --
 
