@@ -9,11 +9,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nivel = $_POST['nivel'];
 
     $stmt = $conn->prepare("
-     UPDATE usuarios SET nome = ?, login = ?, nivel = ? WHERE id_usuario = ?");
+    UPDATE usuarios SET nome = ?, login = ?, nivel = ? WHERE id_usuario = ?");
 
     $stmt->bind_param("sssi", $nome, $login, $nivel, $id);
 
     if ($stmt->execute()) {
+        $id_usuario_logado = $_SESSION['usuario_id'];
+        $texto_acao = "Editou o perfil do usuário: " . $login;
+
+        registrarLog($conn, $id_usuario_logado, $texto_acao);
+
+
         echo "<script>alert('Usuário atualizado com sucesso!'); window.location.href='../frontend/tela_admin.php';</script>";
     } else {
         echo "Erro ao atualizar o usuário: " . $conn->error;
