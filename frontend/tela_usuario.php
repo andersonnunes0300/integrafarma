@@ -1,14 +1,15 @@
 <?php
 session_start();
 
+require_once '../conexao/conexao.php';
+
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: tela_login.php");
     exit;
 }
 
-require_once '../conexao/conexao.php';
+$pesquisa = isset($_GET['busca']) ? trim($_GET['busca']) : '';
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-Br">
@@ -101,6 +102,18 @@ require_once '../conexao/conexao.php';
         </section>
 
         <section id="resultado_cadastro">
+
+            <div class="container-busca" style="margin-bottom: 10px; display: flex; justify-content: center; gap: 10px;background-color: #f4f7f6">
+                <form action="" method="GET" style="display: flex; width: 400px; gap: 10px; flex-direction: row; background: none; box-shadow: none; padding: 0;">
+                    <input type="text" name="busca" value="<?= htmlspecialchars($pesquisa) ?>" placeholder="Pesquise por nome, ID ou tipo..." style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.95rem;">
+                    <button type="submit" style="padding: 10px 20px; background-color: #28959E; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Buscar</button>
+
+                    <?php if ($pesquisa !== ''): ?>
+                        <a href="?" style="padding: 10px 15px; background-color: #e74c3c; color: white; border-radius: 4px; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center;">Limpar</a>
+                    <?php endif; ?>
+                </form>
+            </div>
+
             <table>
                 <thead>
                     <tr>
@@ -120,8 +133,18 @@ require_once '../conexao/conexao.php';
                     <?php
                     $sql = "SELECT m.*, f.nome_empresa 
                             FROM medicamentos m 
-                            LEFT JOIN fornecedores f ON m.id_fornecedor = f.id_fornecedor 
-                            ORDER BY m.nome ASC";
+                            LEFT JOIN fornecedores f ON m.id_fornecedor = f.id_fornecedor";
+
+                    // Se houver pesquisa, adiciona filtros preventivos usando o operador LIKE
+                    if ($pesquisa !== '') {
+                        // Escapa a string para evitar injeções SQL indesejadas
+                        $busca_segura = $conn->real_escape_string($pesquisa);
+                        $sql .= " WHERE m.nome LIKE '%$busca_segura%'
+                                   OR m.id_medicamento LIKE '%$busca_segura%'
+                                   OR m.tipo LIKE '%$busca_segura%'";
+                    }
+
+                    $sql .= " ORDER BY m.nome ASC";
                     $resultado = $conn->query($sql);
 
                     if ($resultado && $resultado->num_rows > 0) {
