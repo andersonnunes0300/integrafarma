@@ -14,7 +14,6 @@ body {
     color: var(--text-dark);
 }
 
-
 header {
     background-color: var(--white);
     padding: 10px 5%;
@@ -38,13 +37,11 @@ header img {
     font-weight: 600;
 }
 
-
 .conteudo_principal {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
-
 
 #cadastro_produtos {
     background: var(--white);
@@ -69,7 +66,6 @@ legend {
     padding: 0 10px;
     font-size: 1.2rem;
 }
-
 
 .campo-grupo {
     display: flex;
@@ -100,24 +96,42 @@ legend {
 }
 
 
+.botoes-form {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+
+.btn-cadastrar, .btn-limpar {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+
 .btn-cadastrar {
     background-color: var(--primary-color);
     color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
-    width: 100%;
-    transition: background 0.3s;
 }
 
 .btn-cadastrar:hover {
     background-color: var(--primary-hover);
 }
 
+.btn-limpar {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-limpar:hover {
+    background-color: #c0392b;
+}
 
 #resultado_cadastro {
     background: var(--white);
@@ -145,13 +159,11 @@ th, td {
     font-size: 0.9rem;
 }
 
-
 td a {
     text-decoration: none;
     margin: 0 5px;
     font-size: 1.1rem;
 }
-
 
 @media (max-width: 992px) {
     fieldset {
@@ -168,5 +180,15 @@ td a {
         flex-direction: column;
         text-align: center;
         gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .botoes-form {
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+    .btn-cadastrar, .btn-limpar {
+        width: 100%;
     }
 }
