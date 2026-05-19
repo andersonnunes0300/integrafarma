@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssi", $nome, $cnpj, $id);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Fornecedor atualizado!'); window.location.href='../frontend/tela_admin.php';</script>";
+        echo "<script>alert('Fornecedor atualizado!'); window.location.href='../frontend/listas_users_fornecedores.php';</script>";
     } else {
         echo "Erro ao atualizar fornecedor: " . $conn->error;
     }

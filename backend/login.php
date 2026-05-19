@@ -18,12 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['usuario_nivel'] = $dados['nivel'];
         $_SESSION['nome'] = $dados['nome'];
 
-        if ($_SESSION['usuario_nivel'] === 'admin') {
-            header("Location:../frontend/tela_admin.php");
-        } else {
-            header("Location: ../frontend/tela_usuario.php");
-        }
+        header("Location: ../frontend/menu_escolhas.php");
         exit;
+
     } else {
         echo "<script>alert('Login ou senha incorretos. Tente novamente.');</script>";
     }
