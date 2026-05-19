@@ -192,3 +192,18 @@ td a {
         width: 100%;
     }
 }
+
+.btn-retornar {
+    color: #28959E;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+.btn-retornar:hover {
+    background-color: #0d545b;
+}

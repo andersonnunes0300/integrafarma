@@ -49,7 +49,6 @@ header img {
     margin: 0;
 }
 
-/* Barra do menu principal */
 .menu-adm {
     background-color: var(--white);
     border-bottom: 1px solid var(--border-gray);
@@ -58,19 +57,16 @@ header img {
     margin-bottom: 30px;
 }
 
-/* Alinhamento horizontal dos blocos principais */
 .menu-principal {
     display: flex;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Item da lista que serve de base para posicionar o submenu flutuante */
 .menu-item {
     position: relative;
 }
 
-/* Links principais: Config. Fornecedor, Config. Usuário e Config. Estoque */
 .link-principal {
     display: block;
     padding: 15px 20px;
@@ -82,16 +78,13 @@ header img {
     transition: color 0.3s, background-color 0.3s, border-color 0.3s;
 }
 
-/* Efeito ao passar o mouse ou focar nos itens da barra principal */
 .link-principal:hover,
 .menu-item:focus-within .link-principal {
     color: var(--primary-color);
     background-color: rgba(40, 149, 158, 0.05);
-    /* 5% de opacidade da cor principal */
     border-bottom-color: var(--primary-color);
 }
 
-/* Submenu container (Dropdown oculto por padrão) */
 .submenu {
     position: absolute;
     top: 100%;
@@ -102,15 +95,12 @@ header img {
     border: 1px solid var(--border-gray);
     border-radius: 0 0 8px 8px;
     z-index: 999;
-
-    /* Configuração de acessibilidade e animação em vez de display:none */
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 }
 
-/* Links dentro do menu que desce (Cadastrar, Editar, Excluir) */
 .submenu li a {
     display: block;
     padding: 12px 20px;
@@ -121,20 +111,17 @@ header img {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Remove a linha divisória do último item do dropdown */
 .submenu li:last-child a {
     border-bottom: none;
     border-radius: 0 0 7px 7px;
 }
 
-/* Efeito ao passar o mouse ou interagir com as opções internas do dropdown */
 .submenu li a:hover,
 .submenu li a:focus {
     background-color: var(--primary-color);
     color: var(--white);
 }
 
-/* AÇÃO DO MENU: Mostra o dropdown correspondente ao passar o mouse ou usar o Tab */
 .menu-item:hover .submenu,
 .menu-item:focus-within .submenu {
     opacity: 1;
@@ -142,7 +129,6 @@ header img {
     transform: translateY(0);
 }
 
-/* Suporte básico para quebra de linha em telas menores (Celulares) */
 @media (max-width: 768px) {
     .menu-principal {
         flex-direction: column;

@@ -18,11 +18,9 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* Centraliza verticalmente na tela */
     color: var(--text-dark);
 }
 
-/* Card Centralizado */
 .card {
     background: var(--white);
     padding: 30px 40px;
@@ -30,7 +28,6 @@ body {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 450px;
-    /* Largura ideal para formulários de edição simples */
 }
 
 h2 {
@@ -42,7 +39,6 @@ h2 {
     padding-bottom: 15px;
 }
 
-/* Estilo do Formulário */
 form {
     display: flex;
     flex-direction: column;
@@ -62,7 +58,6 @@ form {
     border: 1px solid var(--border-gray);
     border-radius: 6px;
     box-sizing: border-box;
-    /* Garante que o padding não aumente a largura */
     font-size: 1rem;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -73,7 +68,6 @@ form {
     box-shadow: 0 0 0 3px rgba(40, 149, 158, 0.1);
 }
 
-/* Botões */
 .btn-save {
     background-color: var(--primary-color);
     color: var(--white);
@@ -105,7 +99,6 @@ form {
     color: var(--danger-color);
 }
 
-/* Responsividade para telas muito pequenas */
 @media (max-width: 480px) {
     .card {
         margin: 20px;

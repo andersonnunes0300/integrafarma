@@ -1,36 +1,52 @@
+/* Reset básico e centralização */
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
     display: flex;
     justify-content: center;
-    padding-top: 50px;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
+/* Estilo do Card */
 .card {
     background: white;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
-}
-
-input,
-select {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    max-width: 350px;
 }
 
+.card h2 {
+    margin-top: 0;
+    text-align: center;
+    color: #333;
+}
 
+/* Inputs e Selects */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Garante que o padding não quebre a largura */
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #28959E;
+}
+
+/* Corrigido para a classe .botoes-form usada no seu HTML */
 .botoes-form {
     display: flex;
     justify-content: space-between;
     gap: 12px;
-    margin: 15px 0;
-    width: 100%;
+    margin-top: 20px;
 }
 
 .botoes-form button {
@@ -38,28 +54,48 @@ select {
     border: none;
     padding: 12px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 5px;
     font-weight: bold;
     font-size: 14px;
-    transition: background 0.3s;
-    box-sizing: border-box;
+    transition: transform 0.1s, background 0.3s;
 }
 
+.botoes-form button:active {
+    transform: scale(0.98);
+}
 
-.botoes-form .btn-limpar {
+/* Botão Limpar */
+.btn-limpar {
     background-color: #e74c3c;
     color: white;
 }
 
-.botoes-form .btn-limpar:hover {
+.btn-limpar:hover {
     background-color: #c0392b;
 }
 
-.botoes-form .btn-cadastrar {
+/* Botão Cadastrar */
+.btn-cadastrar {
     background-color: #28959E;
     color: white;
 }
 
-.botoes-form .btn-cadastrar:hover {
+.btn-cadastrar:hover {
     background-color: #1f767d;
+}
+
+/* Link Voltar */
+.card p {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.card a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.card a:hover {
+    text-decoration: underline;
 }
