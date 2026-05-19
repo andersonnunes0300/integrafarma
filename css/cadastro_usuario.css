@@ -1,10 +1,10 @@
 body { 
-    font-family: Arial;
-     background: #f4f4f4; 
-     display: flex; 
-     justify-content: center; 
-     padding-top: 50px;
-     }
+    font-family: Arial, sans-serif;
+    background: #f4f4f4; 
+    display: flex; 
+    justify-content: center; 
+    padding-top: 50px;
+}
 
 .card { 
     background: white; 
@@ -12,7 +12,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     width: 350px;
- }
+}
 
 input, select { 
     width: 100%;
@@ -21,14 +21,45 @@ input, select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    }
+}
 
-button { 
+
+.botoes-form {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 15px 0;
     width: 100%;
-    background: #28959E;
-    color: white;
+}
+
+
+.botoes-form button { 
+    flex: 1; 
     border: none;
     padding: 12px;
     cursor: pointer; 
     border-radius: 4px;
- }
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.3s;
+    box-sizing: border-box;
+}
+
+.botoes-form .btn-limpar {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.botoes-form .btn-limpar:hover {
+    background-color: #c0392b;
+}
+
+
+.botoes-form .btn-cadastrar {
+    background-color: #28959E;
+    color: white;
+}
+
+.botoes-form .btn-cadastrar:hover {
+    background-color: #1f767d;
+}
