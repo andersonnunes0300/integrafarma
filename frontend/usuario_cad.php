@@ -20,7 +20,10 @@
                 <option value="funcionario">Funcionário</option>
             </select>
             
-            <button type="submit">Finalizar Cadastro</button>
+            <div class="botoes-form">
+                <button type="reset" class="btn-limpar">Limpar</button>
+                <button type="submit" class="btn-cadastrar">Finalizar Cadastro</button>
+            </div>
         </form>
         <p style="text-align:center;"><a href="tela_admin.php" style="color:#666; text-decoration:none; font-size:14px;">Cancelar e Voltar</a></p>
     </div>
