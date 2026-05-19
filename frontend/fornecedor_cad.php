@@ -25,7 +25,10 @@ if (!isset($_SESSION['usuario_id'])) {
             <input type="text" name="nome_empresa" placeholder="Nome do Fornecedor" required>
             <input type="text" name="cnpj" placeholder="CNPJ" required>
 
-            <button type="submit">Finalizar Cadastro</button>
+            <div class="botoes-form">
+                <button type="reset" class="btn-limpar">Limpar</button>
+                <button type="submit" class="btn-cadastrar">Finalizar Cadastro</button>
+            </div>
         </form>
         <p style="text-align:center;"><a href="tela_admin.php" style="color:#666; text-decoration:none; font-size:14px;">Voltar</a></p>
     </div>
