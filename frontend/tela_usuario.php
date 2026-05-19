@@ -97,7 +97,10 @@ $pesquisa = isset($_GET['busca']) ? trim($_GET['busca']) : '';
                     </div>
                 </fieldset>
 
-                <button class="btn-cadastrar" type="submit">Cadastrar Produto</button>
+                <div class="botoes-form">
+                    <button class="btn-limpar" type="reset">Limpar Campos</button>
+                    <button class="btn-cadastrar" type="submit">Cadastrar Produto</button>
+                </div>
             </form>
         </section>
 
@@ -135,9 +138,7 @@ $pesquisa = isset($_GET['busca']) ? trim($_GET['busca']) : '';
                             FROM medicamentos m 
                             LEFT JOIN fornecedores f ON m.id_fornecedor = f.id_fornecedor";
 
-                    // Se houver pesquisa, adiciona filtros preventivos usando o operador LIKE
                     if ($pesquisa !== '') {
-                        // Escapa a string para evitar injeções SQL indesejadas
                         $busca_segura = $conn->real_escape_string($pesquisa);
                         $sql .= " WHERE m.nome LIKE '%$busca_segura%'
                                    OR m.id_medicamento LIKE '%$busca_segura%'
@@ -164,7 +165,6 @@ $pesquisa = isset($_GET['busca']) ? trim($_GET['busca']) : '';
 
                             echo "<td style='text-align: center;'>
                                     <a href='../frontend/estoque_editar.php?id=" . $row['id_medicamento'] . "' title='Editar'>✏️</a>
-                                    <a href='../frontend/estoque_baixa.php?id=" . $row['id_medicamento'] . "' title='Dar Baixa' style='margin: 0 8px; color: #e67e22;'>📦↓</a> 
                                     <a href='../backend/estoque_delete.php?id=" . $row['id_medicamento'] . "' onclick=\"return confirm('Deseja excluir?')\" title='Excluir'>🗑️</a>
                                   </td>";
                             echo "</tr>";
