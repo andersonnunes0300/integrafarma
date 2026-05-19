@@ -4,8 +4,6 @@ require_once '../conexao/conexao.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-
-    // Busca os dados no banco para preencher o formulário
     $stmt = $conn->prepare("SELECT * FROM fornecedores WHERE id_fornecedor = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -44,7 +42,7 @@ if (isset($_GET['id'])) {
             <input type="text" name="cnpj" value="<?php echo htmlspecialchars($fornecedor['cnpj']); ?>" required>
 
             <button type="submit" class="btn-save">Salvar Alterações</button>
-            <a href="tela_admin.php" class="btn-cancel">Cancelar e Voltar</a>
+            <a href="listas_users_fornecedores.php" class="btn-cancel">Cancelar e Voltar</a>
         </form>
     </div>
 </body>

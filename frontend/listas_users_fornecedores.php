@@ -2,7 +2,6 @@
 session_start();
 require_once '../conexao/conexao.php';
 
-// Proteção de acesso
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: tela_login.php");
     exit;
@@ -40,7 +39,6 @@ if (!isset($_SESSION['usuario_id'])) {
                     echo "<td>{$f['id_fornecedor']}</td>";
                     echo "<td>" . htmlspecialchars($f['nome_empresa']) . "</td>";
                     echo "<td>" . htmlspecialchars($f['cnpj']) . "</td>";
-                    // O LINK COM O ID QUE O SEU EDITAR PRECISA:
                     echo "<td>
                             <a href='fornecedor_editar.php?id={$f['id_fornecedor']}'>✏️ Editar</a> |
                             <a href='../backend/fornecedor_delete.php?id={$f['id_fornecedor']}' onclick='return confirm(\"Excluir?\")'>🗑️ Excluir</a>
@@ -75,7 +73,6 @@ if (!isset($_SESSION['usuario_id'])) {
                     echo "<td>" . htmlspecialchars($u['nome']) . "</td>";
                     echo "<td>" . htmlspecialchars($u['login']) . "</td>";
                     echo "<td>" . htmlspecialchars($u['nivel']) . "</td>";
-                    // LINK DE EDIÇÃO PARA USUÁRIO (Lembre de criar o usuario_editar.php seguindo a mesma lógica)
                     echo "<td>
                             <a href='usuario_editar.php?id={$u['id_usuario']}'>✏️ Editar</a> |
                             <a href='../backend/usuario_delete.php?id={$u['id_usuario']}' onclick='return confirm(\"Excluir?\")'>🗑️ Excluir</a>

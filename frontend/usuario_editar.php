@@ -55,7 +55,7 @@ if (isset($_GET['id'])) {
             </select>
 
             <button type="submit" class="btn-save">Salvar Alterações</button>
-            <a href="tela_admin.php" class="btn-cancel">Cancelar e Voltar</a>
+            <a href="listas_users_fornecedores.php" class="btn-cancel">Cancelar e Voltar</a>
         </form>
     </div>
 </body>

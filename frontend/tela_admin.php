@@ -1,14 +1,18 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: tela_login.php");
+    header("Location: tela_login.php"); 
     exit;
 }
 
-require_once '../conexao/conexao.php';
+if ($_SESSION['usuario_nivel'] !== 'admin') {
+    echo "<script>
+            alert('Acesso negado! Esta área é exclusiva para administradores.');
+            window.location.href = 'menu_escolhas.php';
+          </script>";
+    exit;
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-Br">
 
@@ -16,7 +20,7 @@ require_once '../conexao/conexao.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/tela_admin.css">
-    <title>IntegraFarma - Cadastro</title>
+    <title>IntegraFarma - Painel Administrativo</title>
 </head>
 
 <body>
@@ -37,16 +41,10 @@ require_once '../conexao/conexao.php';
         <ul class="menu-principal">
             <li class="menu-item">
                 <a href="listas_users_fornecedores.php" class="link-principal">Fornecedores</a>
-                <ul class="submenu">
-                    
-                </ul>
             </li>
 
             <li class="menu-item">
                 <a href="listas_users_fornecedores.php" class="link-principal">Usuários</a>
-                <ul class="submenu">
-                    
-                </ul>
             </li>
 
             <li class="menu-item">
@@ -57,10 +55,11 @@ require_once '../conexao/conexao.php';
                     <li><a href="estoque_alertas.php">Alertas de Mínimo</a></li>
                 </ul>
             </li>
+
+            <li class="menu-item">
+                <a href="../pdv_integrafarma/frontend_pdv/relatorios.php" class="link-principal">Relatórios</a>
+            </li>
         </ul>
     </nav>
-
-
 </body>
-
 </html>
