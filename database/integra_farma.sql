@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/04/2026 às 02:12
+-- Tempo de geração: 19/05/2026 às 20:19
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `integra_farma`
 --
-CREATE DATABASE IF NOT EXISTS integra_farma;
-USE integra_farma;
 
 -- --------------------------------------------------------
 
@@ -35,19 +33,50 @@ CREATE TABLE `fornecedores` (
   `cnpj` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `fornecedores`
+--
+
+INSERT INTO `fornecedores` (`id_fornecedor`, `nome_empresa`, `cnpj`) VALUES
+(1, 'Cimed', '000153359893'),
+(2, 'NeoQuimica', '000154498631');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `itens_vendas`
+--
+
+CREATE TABLE `itens_vendas` (
+  `id_item` int(11) NOT NULL,
+  `id_venda` int(11) NOT NULL,
+  `id_medicamento` varchar(10) NOT NULL,
+  `quantidade` int(11) NOT NULL,
+  `preco_unitario` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `logs_historico`
 --
 
-CREATE TABLE IF NOT EXISTS `logs_historico` (
-    `id_log` INT AUTO_INCREMENT PRIMARY KEY,
-    `id_usuario` INT NOT NULL,
-    `acao` VARCHAR(255) NOT NULL,
-    `data_hora` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (`id_usuario`) REFERENCES `usuarios`(`id_usuario`) ON DELETE CASCADE
-);
+CREATE TABLE `logs_historico` (
+  `id_log` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `acao` varchar(255) NOT NULL,
+  `data_hora` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `logs_historico`
+--
+
+INSERT INTO `logs_historico` (`id_log`, `id_usuario`, `acao`, `data_hora`) VALUES
+(1, 1, 'Atualizou o medicamento: Licrex', '2026-05-19 03:23:21'),
+(2, 1, 'Editou o perfil do usuário: fucionario', '2026-05-19 17:07:08');
+
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `medicamentos`
@@ -65,6 +94,14 @@ CREATE TABLE `medicamentos` (
   `id_fornecedor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `medicamentos`
+--
+
+INSERT INTO `medicamentos` (`id_medicamento`, `nome`, `tipo`, `tarja`, `lote`, `validade`, `quantidade`, `preco`, `id_fornecedor`) VALUES
+('1212123', 'Benegrip', 'Genérico', 'Sem Tarja', 'L-2945782', '2030-05-30', 20, 3.40, 1),
+('5535395', 'Licrex', 'Genérico', 'Tarja Verde', 'A-29999', '2026-06-24', 50, 2.00, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -80,6 +117,29 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Despejando dados para a tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `nome`, `login`, `senha`, `nivel`) VALUES
+(1, 'Anderson Nunes Santos', 'anderson', '123', 'admin'),
+(4, 'Funcionario', 'Funcionario', 'abc', 'funcionario'),
+(5, 'Funcionario1', 'Funcionario1', 'abc', 'funcionario');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `vendas`
+--
+
+CREATE TABLE `vendas` (
+  `id_venda` int(11) NOT NULL,
+  `data_venda` timestamp NOT NULL DEFAULT current_timestamp(),
+  `valor_total` decimal(10,2) NOT NULL,
+  `forma_pagamento` enum('dinheiro','pix','credito','debito') NOT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
 -- Índices para tabelas despejadas
 --
 
@@ -89,6 +149,21 @@ CREATE TABLE `usuarios` (
 ALTER TABLE `fornecedores`
   ADD PRIMARY KEY (`id_fornecedor`),
   ADD UNIQUE KEY `cnpj` (`cnpj`);
+
+--
+-- Índices de tabela `itens_vendas`
+--
+ALTER TABLE `itens_vendas`
+  ADD PRIMARY KEY (`id_item`),
+  ADD KEY `id_venda` (`id_venda`),
+  ADD KEY `id_medicamento` (`id_medicamento`);
+
+--
+-- Índices de tabela `logs_historico`
+--
+ALTER TABLE `logs_historico`
+  ADD PRIMARY KEY (`id_log`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Índices de tabela `medicamentos`
@@ -105,6 +180,13 @@ ALTER TABLE `usuarios`
   ADD UNIQUE KEY `login` (`login`);
 
 --
+-- Índices de tabela `vendas`
+--
+ALTER TABLE `vendas`
+  ADD PRIMARY KEY (`id_venda`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -112,23 +194,60 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
-  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `itens_vendas`
+--
+ALTER TABLE `itens_vendas`
+  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `logs_historico`
+--
+ALTER TABLE `logs_historico`
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `vendas`
+--
+ALTER TABLE `vendas`
+  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para tabelas despejadas
 --
 
 --
+-- Restrições para tabelas `itens_vendas`
+--
+ALTER TABLE `itens_vendas`
+  ADD CONSTRAINT `fk_itens_medicamentos` FOREIGN KEY (`id_medicamento`) REFERENCES `medicamentos` (`id_medicamento`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_itens_vendas_pai` FOREIGN KEY (`id_venda`) REFERENCES `vendas` (`id_venda`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restrições para tabelas `logs_historico`
+--
+ALTER TABLE `logs_historico`
+  ADD CONSTRAINT `logs_historico_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Restrições para tabelas `medicamentos`
 --
 ALTER TABLE `medicamentos`
-  ADD CONSTRAINT `medicamentos_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id_fornecedor`);
+  ADD CONSTRAINT `medicamentos_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id_fornecedor`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Restrições para tabelas `vendas`
+--
+ALTER TABLE `vendas`
+  ADD CONSTRAINT `fk_vendas_usuarios` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
