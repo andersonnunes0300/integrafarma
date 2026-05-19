@@ -1,5 +1,5 @@
 Colocar botão de limpar dados quando estiver cadastrando medicamentos. OK (feito)
-Colocar mesmo botão(cad.) para fornecedores e usuários.
+Colocar mesmo botão(cad.) para fornecedores e usuários. OK (feito)
 Fazer PDV.
 Arrumar responsividade e css.
 Usar nome de famrácia real.
