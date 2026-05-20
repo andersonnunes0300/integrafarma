@@ -34,6 +34,11 @@ if ($_SESSION['usuario_nivel'] !== 'admin') {
                 <span class="icon-nome-usuario">👤 <?= htmlspecialchars($_SESSION['usuario_login']) ?></span>
                 <a href="../backend/logout.php">Sair</a>
             </div>
+
+                    <div class="retornar">
+                <a href="../frontend/menu_escolhas.php">Retornar</a>
+            </div>
+
         </div>
     </header>
 

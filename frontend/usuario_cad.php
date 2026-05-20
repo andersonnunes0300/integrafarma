@@ -1,3 +1,13 @@
+<?php
+if ($_SESSION['usuario_nivel'] !== 'admin') {
+    echo "<script>
+            alert('Acesso negado! Esta área é exclusiva para administradores.');
+            window.location.href = 'menu_escolhas.php';
+          </script>";
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
