@@ -288,7 +288,7 @@ document.getElementById('btn_finalizar_venda').addEventListener('click', functio
         itens: carrinho
     };
 
-    fetch('/integrafarma/pdv_integrafarma/backend_pdv/finalizar_venda.php',{
+    fetch('../backend_pdv/finalizar_venda.php',{
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dadosVenda)
