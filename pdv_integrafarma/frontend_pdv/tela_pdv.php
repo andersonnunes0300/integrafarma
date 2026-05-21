@@ -144,7 +144,7 @@ let totalVenda = 0;
 let todosProdutos = [];
 
 function carregarProdutosDoServidor() {
-    fetch('/integrafarma/pdv_integrafarma/backend_pdv/buscar_remedio.php')
+    fetch('../backend_pdv/buscar_remedio.php')
     .then(res => {
         if (!res.ok) throw new Error("Erro ao buscar dados do banco (Status: " + res.status + ")");
         return res.json();
