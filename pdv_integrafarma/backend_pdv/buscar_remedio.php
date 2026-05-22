@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario_id'])) {
 
 require_once '../../conexao/conexao.php';
 
-$sql = "SELECT id_medicamento, nome, preco, quantidade FROM medicamentos WHERE quantidade > 0";
+$sql = "SELECT id_medicamento, nome, preco, quantidade, validade FROM medicamentos WHERE quantidade > 0";
 $resultado = $conn->query($sql);
 
 $produtos = [];
@@ -20,7 +20,8 @@ if ($resultado && $resultado->num_rows > 0) {
             'id_medicamento' => $linha['id_medicamento'],
             'nome'           => $linha['nome'],
             'preco'          => floatval($linha['preco']),
-            'quantidade'     => intval($linha['quantidade'])
+            'quantidade'     => intval($linha['quantidade']),
+            'data_validade'       => $linha['validade']
         ];
     }
 }
