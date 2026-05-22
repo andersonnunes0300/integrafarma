@@ -79,7 +79,7 @@ try {
         </table>
 
         <br>
-        <a href="tela_usuario.php" class="btn-voltar" style="text-decoration: none; display: inline-block; margin-top: 20px;">← Voltar</a>
+        <a href="tela_admin.php" class="btn-voltar" style="text-decoration: none; display: inline-block; margin-top: 20px;">← Voltar</a>
     </main>
 </body>
 
