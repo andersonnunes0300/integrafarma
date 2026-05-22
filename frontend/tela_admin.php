@@ -8,6 +8,14 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
+if ($_SESSION['usuario_nivel'] !== 'admin') {
+    echo "<script>
+            alert('Acesso negado! Esta área é exclusiva para administradores.');
+            window.location.href = 'menu_escolhas.php';
+          </script>";
+    exit;
+}
+
 $nome_operador = isset($_SESSION['usuario_login']) ? $_SESSION['usuario_login'] : 'Admin';
 
 // Função para verificar status e retornar a recomendação textual
