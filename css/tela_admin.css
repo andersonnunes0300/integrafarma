@@ -6,7 +6,6 @@
     --text-muted: #666;
     --white: #ffffff;
     --border-gray: #ddd;
-    /* Adicionando as cores que faltavam para os alertas */
     --danger: #e74c3c;
     --warning: #f1c40f;
     --success: #27ae60;
@@ -30,7 +29,6 @@ header img {
     height: 60px;
 }
 
-/* Informações do Usuário no Header */
 .info-usuario {
     display: flex;
     align-items: center;
@@ -72,7 +70,6 @@ header img {
     padding-left: 15px;
 }
 
-/* Grid de Cards */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -116,7 +113,6 @@ header img {
     color: var(--text-muted);
 }
 
-/* Seção de Monitoramento */
 .monitoramento-validade {
     margin: 50px auto;
     max-width: 1200px;
@@ -151,11 +147,9 @@ header img {
     border-bottom: 1px solid #eee;
 }
 
-/* Estilização Dinâmica das Linhas (PHP) */
 .linha-vencendo { background-color: #fffdf5; }
 .linha-expirado { background-color: #fff9f9; }
 
-/* Status Badges */
 .badge-status {
     padding: 6px 12px;
     border-radius: 20px;
@@ -174,7 +168,6 @@ header img {
     color: #721c24;
 }
 
-/* Botões na Tabela */
 .btn-promo, .btn-remover {
     padding: 8px 14px;
     border: none;
@@ -204,12 +197,10 @@ header img {
     background: #c0392b;
 }
 
-/* Ajuste do Form dentro da Tabela */
 .tabela-alertas form {
     display: inline;
 }
 
-/* Responsividade */
 @media (max-width: 900px) {
     .header-admin .container {
         flex-direction: column;
@@ -224,6 +215,6 @@ header img {
     
     .tabela-alertas th:nth-child(2), 
     .tabela-alertas td:nth-child(2) {
-        display: none; /* Esconde data em telas muito pequenas para não quebrar */
+        display: none;
     }
 }

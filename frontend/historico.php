@@ -31,7 +31,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/tela_usuario.css">
+    <link rel="stylesheet" href="../css/historico.css">
     <title>IntegraFarma - Histórico</title>
 </head>
 
@@ -44,14 +44,15 @@ try {
 
             <div class="info-usuario">
                 <span class="icon-nome-usuario">👤 <?= htmlspecialchars($_SESSION['usuario_login']) ?></span>
-                <a href="../backend/logout.php" style="text-decoration: none; color: #e74c3c; font-weight: bold; margin-left: 15px;">Sair</a>
+                <a href="../backend/logout.php" class="btn-sair-link">Sair</a>
             </div>
         </div>
     </header>
 
-    <main class="info-historico" style="max-width: 1000px; margin: 40px auto; padding: 20px;">
+    <main class="info-historico">
         <h2>Histórico de Atividades</h2>
-        <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+
+        <table class="tabela-estilizada">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -67,19 +68,20 @@ try {
                             <td><?= htmlspecialchars($log['id_log']) ?></td>
                             <td><?= htmlspecialchars($log['nome_usuario']) ?></td>
                             <td><?= htmlspecialchars($log['acao']) ?></td>
-                            <td><?= htmlspecialchars($log['data_hora']) ?></td>
+                            <td><?= date('d/m/Y H:i', strtotime($log['data_hora'])) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="4" style="text-align: center; padding: 15px;">Nenhum registro encontrado.</td>
+                        <td colspan="4" class="msg-vazia">Nenhum registro encontrado.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
         </table>
 
-        <br>
-        <a href="tela_admin.php" class="btn-voltar" style="text-decoration: none; display: inline-block; margin-top: 20px;">← Voltar</a>
+        <div class="footer-acoes">
+            <a href="tela_admin.php" class="btn-voltar">← Voltar</a>
+        </div>
     </main>
 </body>
 
