@@ -30,7 +30,7 @@ $pesquisa = isset($_GET['busca']) ? trim($_GET['busca']) : '';
 
         <div class="info-usuario">
             <span class="icon-nome-usuario">👤 <?= htmlspecialchars($_SESSION['usuario_login']) ?></span>
-            <a href="menu_escolhas.php" class="btn-retornar">⬅ Retornar</a> <a href="historico.php" class="btn-historico">📜 Relatório</a>
+            <a href="menu_escolhas.php" class="btn-retornar">⬅ Retornar</a>
             <a href="../backend/logout.php">Sair</a>
         </div>
         </div>
