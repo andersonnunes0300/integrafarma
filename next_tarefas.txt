@@ -1,7 +1,0 @@
-Colocar botão de limpar dados quando estiver cadastrando medicamentos. OK (feito)
-Colocar mesmo botão(cad.) para fornecedores e usuários. OK (feito)
-Fazer PDV. (OK)
-Arrumar responsividade e css. OK (realizado)
-Usar nome de famrácia real. status -pendente.
-Retirar o dar baixa (inserir funções) OK (FOI RETIRADO)
-Banner e PDF. pendente
