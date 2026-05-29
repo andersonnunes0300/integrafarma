@@ -44,7 +44,7 @@ $pesquisa = isset($_GET['busca']) ? trim($_GET['busca']) : '';
 
                     <div class="campo-grupo">
                         <label for="id_medicamento">Código (ID):</label>
-                        <input type="text" id="id_medicamento" name="id_medicamento" required placeholder="DIP-123456">
+                        <input type="text" id="id_medicamento" name="id_medicamento" required placeholder="123456789">
                     </div>
 
                     <div class="campo-grupo">
